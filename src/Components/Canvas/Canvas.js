@@ -1,5 +1,4 @@
-
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 
 type Coordinates = {
@@ -101,7 +100,7 @@ function Canvas() {
           marginTop: 10,
         }}
       ></canvas>
-      <button onClick={canvasRef.current.clean}>reset</button>
+      <button onClick={canvasRef?.current?.clean}>reset</button>
     </div>
   );
 }
