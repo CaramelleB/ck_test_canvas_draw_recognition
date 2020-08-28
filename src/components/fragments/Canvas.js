@@ -1,19 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 
-type Coordinates = {
-  x: number;
-  y: number;
-};
-
 function Canvas() {
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
 
   React.useEffect(() => {
     let mouseDown: boolean = false;
-    let start: Coordinates = { x: 0, y: 0 };
-    let end: Coordinates = { x: 0, y: 0 };
+    let start = { x: 0, y: 0 };
+    let end = { x: 0, y: 0 };
     let canvasOffsetLeft: number = 0;
     let canvasOffsetTop: number = 0;
 
