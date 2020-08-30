@@ -1,6 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes, css } from 'styled-components';
 import killer from '../img/killer.png';
 import church from '../img/church.png';
 import cross from '../img/holy_cross.svg';
@@ -22,7 +21,7 @@ const useMousePosition = () => {
 };
 
 
-function Spotlight() {
+function Underground() {
 
   const { x, y } = useMousePosition();
 
@@ -35,6 +34,21 @@ function Spotlight() {
   const lightOff = `radial-gradient(circle at ${x / window.innerWidth * 100}% ${y / window.innerHeight * 100}%, transparent 160px,
     rgba(0, 0, 0, 0.99) 200px)`;
 
+  const neonOn = keyframes`
+    0%    { opacity: 1;   }
+    3%    { opacity: 0.4; }
+    6%    { opacity: 1;   }
+    7%    { opacity: 0.4; }
+    8%    { opacity: 1;   }
+    9%    { opacity: 0.4; }
+    10%   { opacity: 1;   }
+    100%  { opacity: 1;   }
+  `;
+  const neonOff = keyframes`
+    0%    { opacity: 0;   }
+    50%    { opacity: 0,3;   }
+    100%  { opacity: 0,1;   }
+  `;
 
   const Underground = styled.div`
   position: absolute;
@@ -60,17 +74,26 @@ function Spotlight() {
   const Killer = styled.img`
   position: absolute;
   bottom: 0px;
+  opacity: ${({ active }) => (active ? '1' : '0')};
   `
   const Cross = styled.img`
   position: absolute;
   left: 10vw;
   top: 1vh;
-  filter: ${({ active }) => (active ? "drop-shadow(0px 25px 2px rgba(189,21,189,.4))" : '')};
+  animation: ${({ active }) => (active ? css`${neonOn} 2s infinite forwards` : css`${neonOff} 20s`)};
   `
+
 
   
 
-  return <Underground active={clicked}><Cross src={cross} active={clicked}/><Killer src={killer} alt="made by upklyak - fr.freepik.com"/><Spot active={clicked}/><Switch active={clicked} onClick={onClicked}/></Underground>
+  return (
+    <Underground active={clicked}>
+      <Cross src={cross} active={clicked}/>
+      <Killer src={killer} active={clicked} alt="made by upklyak - fr.freepik.com"/>
+      <Spot active={clicked}/>
+      <Switch active={clicked} onClick={onClicked}/>
+    </Underground>
+  )
 }
 
-export default Spotlight;
+export default Underground;

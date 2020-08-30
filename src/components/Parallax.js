@@ -8,7 +8,7 @@ import city4 from "../img/city4.png";
 import drone1 from "../img/drone1.png";
 import build from "../img/build.svg";
 import logo from '../img/ck_logo_white.png';
-import Spotlight from './Underground';
+import Underground from './Underground';
 
 
 
@@ -86,6 +86,7 @@ function ParallaxPage() {
             speed={0.5}
           >
             <img src={build} />
+        
           </ParallaxLayer>
           <ParallaxLayer 
             offset={1.6} 
@@ -99,7 +100,7 @@ function ParallaxPage() {
             speed={0}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}
           >
-            <Spotlight />
+            <Underground />
           </ParallaxLayer> 
         </ParallaxLayer> 
       </Parallax>
