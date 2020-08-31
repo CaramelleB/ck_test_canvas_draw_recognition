@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import useMousePosition from './MousePosition';
 import killer from '../img/killer.png';
 import church from '../img/church.png';
 import cross from '../img/holy_cross.svg';
 
-const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState({ x: null, y: null });
-
-  const updateMousePosition = e => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousemove", updateMousePosition);
-
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
-
-  return mousePosition;
-};
 
 
 function Underground() {
@@ -64,23 +50,26 @@ function Underground() {
   `
   const Switch = styled.div`
   position: absolute;
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  width: 20px;
   background-color: ${({ active }) => (active ? "red" : "black")};
   right: 10vw;
   top: 50vh;
   cursor: pointer;
+  padding: 20px;
   `
   const Killer = styled.img`
   position: absolute;
+  left: 10vw;
   bottom: 0px;
   opacity: ${({ active }) => (active ? '1' : '0')};
   `
   const Cross = styled.img`
   position: absolute;
-  left: 10vw;
+  left: 36vw;
   top: 1vh;
   animation: ${({ active }) => (active ? css`${neonOn} 2s infinite forwards` : css`${neonOff} 20s`)};
+  filter: drop-shadow(5px 5px 8px #59ffff);
   `
 
 
@@ -88,8 +77,8 @@ function Underground() {
 
   return (
     <Underground active={clicked}>
-      <Cross src={cross} active={clicked}/>
       <Killer src={killer} active={clicked} alt="made by upklyak - fr.freepik.com"/>
+      <Cross src={cross} active={clicked}/>
       <Spot active={clicked}/>
       <Switch active={clicked} onClick={onClicked}/>
     </Underground>

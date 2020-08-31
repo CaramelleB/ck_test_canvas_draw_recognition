@@ -9,6 +9,7 @@ import drone1 from "../img/drone1.png";
 import build from "../img/build.svg";
 import logo from '../img/ck_logo_white.png';
 import Underground from './Underground';
+import Canvas from './Canvas';
 
 
 
@@ -32,7 +33,7 @@ function ParallaxPage() {
     <div className="Building">
       <Parallax 
       ref={ref => (parallax = ref)} 
-      pages={3} 
+      pages={6} 
       style={{ backgroundColor: '#020d36' }}
       >
         <ParallaxLayer 
@@ -42,14 +43,14 @@ function ParallaxPage() {
         style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} 
         >
           <ParallaxLayer
-            offset={0}
+            offset={1}
             speed={0}
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
           >
             <img src={city4} />
           </ParallaxLayer>
           <ParallaxLayer
-            offset={0} 
+            offset={1} 
             speed={0.1} 
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} 
           >
@@ -62,26 +63,26 @@ function ParallaxPage() {
             <img src={logo} />
           </ParallaxLayer>
           <ParallaxLayer
-            offset={0}
+            offset={1}
             speed={0.3} 
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
           >
             <img src={city2} />
           </ParallaxLayer>
           <ParallaxLayer
-            offset={0}
+            offset={1}
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
             speed={0.5}
             >
               <img src={city1} />
             </ParallaxLayer>
           <ParallaxLayer 
-            offset={0.999} 
+            offset={2} 
             speed={0.5} 
-            style={{ backgroundColor: '#25003c' }}
+            style={{ backgroundColor: '#25003c', height: '4000px'}}
           />
           <ParallaxLayer
-            offset={1.1}
+            offset={2.1}
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'left' }}
             speed={0.5}
           >
@@ -95,8 +96,21 @@ function ParallaxPage() {
           >
             <Drone src={drone1}/>
           </ParallaxLayer>
+          <ParallaxLayer 
+            offset={1.6} 
+            speed={-0.3} 
+            style={{ pointerEvents: 'none' }}
+          >
+          
+          </ParallaxLayer>
+          <ParallaxLayer 
+            offset={4} 
+            speed={0} 
+          >
+            <Canvas/>
+          </ParallaxLayer>
           <ParallaxLayer
-            offset={2}
+            offset={5}
             speed={0}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}
           >
