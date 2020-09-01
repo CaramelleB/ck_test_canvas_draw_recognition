@@ -10,6 +10,7 @@ import build from "../img/build.svg";
 import logo from '../img/ck_logo_white.png';
 import Underground from './Underground';
 import Canvas from './Canvas';
+import Sound from './Sound';
 
 
 
@@ -29,6 +30,8 @@ function ParallaxPage() {
 
   let parallax = useRef(null);
 
+  const sound= '1';
+
   return (
     <div className="Building">
       <Parallax 
@@ -39,9 +42,10 @@ function ParallaxPage() {
         <ParallaxLayer 
         offset={0} 
         speed={0} 
-        factor={1} 
+        factor={2} 
         style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} 
         >
+          <Sound music={sound}/>
           <ParallaxLayer
             offset={1}
             speed={0}
@@ -57,8 +61,9 @@ function ParallaxPage() {
             <img src={city3} />
           </ParallaxLayer>
           <ParallaxLayer 
-            offset={0.1} 
+            offset={0.3} 
             speed={-0.8}
+            sound='1'
           >
             <img src={logo} />
           </ParallaxLayer>
@@ -77,25 +82,26 @@ function ParallaxPage() {
               <img src={city1} />
             </ParallaxLayer>
           <ParallaxLayer 
-            offset={2} 
+            offset={1.95} 
             speed={0.5} 
-            style={{ backgroundColor: '#25003c', height: '4000px'}}
+            style={{ backgroundColor: '#25003c'}}
           />
           <ParallaxLayer
             offset={2.1}
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'left' }}
             speed={0.5}
+            sound='2'
           >
             <img src={build} />
         
           </ParallaxLayer>
-          <ParallaxLayer 
+          {/* <ParallaxLayer 
             offset={1.6} 
             speed={-0.3} 
             style={{ pointerEvents: 'none' }}
           >
             <Drone src={drone1}/>
-          </ParallaxLayer>
+          </ParallaxLayer> */}
           <ParallaxLayer 
             offset={1.6} 
             speed={-0.3} 
@@ -120,6 +126,8 @@ function ParallaxPage() {
       </Parallax>
     </div>
   );
+
+
 }
 
 export default ParallaxPage;

@@ -11,7 +11,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-spring": "^8.0.27",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "use-sound": "^1.0.2"
   },
   "devDependencies": {
     "@poool/eslint-config": "1.2.3",
