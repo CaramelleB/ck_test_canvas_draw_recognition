@@ -1,59 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { cleanup } from '@testing-library/react';
 
-function Canvas() {
+function Canvas () {
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
 
-  React.useEffect(() => {
-    let mouseDown: boolean = false;
-    let start = { x: 0, y: 0 };
-    let end = { x: 0, y: 0 };
-    let canvasOffsetLeft: number = 0;
-    let canvasOffsetTop: number = 0;
+  let mouseDown = false;
+  let start = { x: 0, y: 0 };
+  let end = { x: 0, y: 0 };
+  let canvasOffsetLeft = 0;
+  let canvasOffsetTop = 0;
 
-    function handleMouseDown(evt: MouseEvent) {
-      mouseDown = true;
-
-      start = {
-        x: evt.clientX - canvasOffsetLeft,
-        y: evt.clientY - canvasOffsetTop,
-      };
-
-      end = {
-        x: evt.clientX - canvasOffsetLeft,
-        y: evt.clientY - canvasOffsetTop,
-      };
-    }
-
-    function handleMouseUp(evt: MouseEvent) {
-      mouseDown = false;
-    }
-
-    function handleMouseMove(evt: MouseEvent) {
-      if (mouseDown && context) {
-        start = {
-          x: end.x,
-          y: end.y,
-        };
-
-        end = {
-          x: evt.clientX - canvasOffsetLeft,
-          y: evt.clientY - canvasOffsetTop,
-        };
-
-        // Draw our path
-        context.beginPath();
-        context.moveTo(start.x, start.y);
-        context.lineTo(end.x, end.y);
-        context.strokeStyle = `black`;
-        context.lineWidth = 3;
-        context.stroke();
-        context.closePath();
-      }
-    }
-
-
+  useEffect(() => {
     if (canvasRef.current) {
       const renderCtx = canvasRef.current.getContext('2d');
 
@@ -69,16 +26,55 @@ function Canvas() {
       }
     }
 
-
-    return function cleanup() {
-      if (canvasRef.current) {
-        canvasRef.current.removeEventListener('mousedown', handleMouseDown);
-        canvasRef.current.removeEventListener('mouseup', handleMouseUp);
-        canvasRef.current.removeEventListener('mousemove', handleMouseMove);
-      }
-    }
   }, [context]);
 
+  const handleMouseDown = evt => {
+    mouseDown = true;
+
+    start = {
+      x: evt.clientX - canvasOffsetLeft,
+      y: evt.clientY - canvasOffsetTop,
+    };
+
+    end = {
+      x: evt.clientX - canvasOffsetLeft,
+      y: evt.clientY - canvasOffsetTop,
+    };
+  };
+
+  const handleMouseUp = () => {
+    mouseDown = false;
+  };
+
+  const handleMouseMove = evt => {
+    if (mouseDown && context) {
+      start = {
+        x: end.x,
+        y: end.y,
+      };
+
+      end = {
+        x: evt.clientX - canvasOffsetLeft,
+        y: evt.clientY - canvasOffsetTop,
+      };
+
+      // Draw our path
+      context.beginPath();
+      context.moveTo(start.x, start.y);
+      context.lineTo(end.x, end.y);
+      context.strokeStyle = 'black';
+      context.lineWidth = 3;
+      context.stroke();
+      context.closePath();
+    }
+  };
+
+  const cleanup = () => {
+    // res = '';
+    mouseDown = false;
+    context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    // up = 0;
+  };
 
   return (
     <div
@@ -95,7 +91,7 @@ function Canvas() {
           marginTop: 10,
         }}
       ></canvas>
-      <button onClick={canvasRef?.current?.clean}>reset</button>
+      <button onClick={() => cleanup()}>reset</button>
     </div>
   );
 }

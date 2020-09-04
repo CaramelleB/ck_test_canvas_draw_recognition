@@ -1,12 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../styles/App.css';
 
 import Building from './Building';
 
-
-function App() {
-
-  let parallax = useRef(null);
+function App () {
 
   return (
     <div className="App">
