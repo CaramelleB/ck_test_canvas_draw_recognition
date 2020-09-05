@@ -15,6 +15,7 @@ function Canvas () {
   let up = 0;
   let dataX;
   let dataY;
+  let total = [];
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -54,6 +55,23 @@ function Canvas () {
     };
   };
 
+  const check = arr => {
+    const filtered = arr.filter(el => {
+      return el != null;
+    });
+
+    const sort = filtered.sort();
+
+    const count = sort.reduce((prev, cur) => {
+      prev[cur] = (prev[cur] || 0) + 1;
+      return prev;
+    }, {});
+
+    if (count.circle && count.line === 8) {
+      console.log(true);
+    }
+  };
+
   const handleMouseUp = () => {
     mouseDown = false;
 
@@ -66,7 +84,9 @@ function Canvas () {
       res += 'u';
     }
 
-    guess(res, up);
+    total.push(guess(res, up));
+
+    check(total);
 
     res = '';
   };
@@ -102,6 +122,7 @@ function Canvas () {
     mouseDown = false;
     context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     up = 0;
+    total = [];
   };
 
   return (
