@@ -6,7 +6,7 @@ import volumeOff from '../img/volume_off.svg';
 import volumeOn from '../img/volume_on.svg';
 
 const SoundButton = styled.img`
-  position: fixed;
+  position: absolute;
   top: 8vh;
   left: 5vw;
 `
