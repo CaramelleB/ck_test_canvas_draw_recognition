@@ -34,7 +34,6 @@ function ParallaxPage() {
 
   return (
     <div className="Building">
-      <Sound music={sound}/>
       <Parallax 
       ref={ref => (parallax = ref)} 
       pages={6} 
@@ -124,6 +123,7 @@ function ParallaxPage() {
           </ParallaxLayer> 
         </ParallaxLayer> 
       </Parallax>
+      <Sound music={sound}/>
     </div>
   );
 
