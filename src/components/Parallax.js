@@ -34,6 +34,7 @@ function ParallaxPage() {
 
   return (
     <div className="Building">
+      <Sound music={sound}/>
       <Parallax 
       ref={ref => (parallax = ref)} 
       pages={6} 
@@ -45,7 +46,6 @@ function ParallaxPage() {
         factor={2} 
         style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} 
         >
-          <Sound music={sound}/>
           <ParallaxLayer
             offset={1}
             speed={0}
